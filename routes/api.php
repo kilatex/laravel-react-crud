@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/logout', [AuthControler::class, 'logout'] );
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
 
 Route::post('/signup', [AuthControler::class, 'signup'] );
 Route::post('/login', [AuthControler::class, 'login'] );
-Route::post('/logout', [AuthControler::class, 'logout'] );
 
